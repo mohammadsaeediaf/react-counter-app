@@ -8,9 +8,14 @@ export default function App() {
   return (
     <div className="container">
       <div className="step">
-        <button onClick={() => setstep(step + 1)}>+</button>
+        <input
+          type="range"
+          min="0"
+          max="10"
+          onChange={(e) => setstep(Number(e.target.value))}
+          value={step}
+        />
         <span>step : {step}</span>
-        <button onClick={() => setstep(step - 1)}>-</button>
       </div>
 
       <div className="count">
