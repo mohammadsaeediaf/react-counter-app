@@ -5,12 +5,22 @@ export default function App() {
   const [step, setstep] = useState(1);
   const date = new Date();
   date.setDate(date.getDate() + count);
+
+  function handleReset() {
+    setstep(1);
+    setcount(0);
+  }
   return (
     <div className="container">
       <div className="step">
-        <button onClick={() => setstep(step + 1)}>+</button>
+        <input
+          type="range"
+          min="0"
+          max="10"
+          onChange={(e) => setstep(Number(e.target.value))}
+          value={step}
+        />
         <span>step : {step}</span>
-        <button onClick={() => setstep(step - 1)}>-</button>
       </div>
 
       <div className="count">
@@ -31,6 +41,13 @@ export default function App() {
           {date.toDateString()}
         </h3>
       </div>
+      {count !== 0 || step !== 1 ? (
+        <div>
+          <button onClick={handleReset}>Reset</button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
